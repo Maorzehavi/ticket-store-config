@@ -19,11 +19,15 @@ spring:
         - id: ticket-service
           uri: lb://ticket-service
           predicates:
-            - Path=/api/v1/tickets/**
+            - Path=/api/v1/ticket/**
         - id: event-service
           uri: lb://event-service
           predicates:
-            - Path=/api/v1/events/**
+            - Path=/api/v1/event/**
+        - id: location-service
+          uri: lb://location-service
+          predicates:
+            - Path=/api/v1/location/**
 management:
   endpoints:
     web:
