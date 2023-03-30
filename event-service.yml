@@ -37,6 +37,6 @@ resilience4j:
 
     retry:
         instances:
-            event-service:
+            default:
                 maxAttempts: 3
                 waitDuration: 1000
