@@ -20,8 +20,23 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+
+resilience4j:
+    circuitbreaker:
+        instances:
+            default:
+                registerHealthIndicator: true
+                slidingWindowSize: 10
+                permittedNumberOfCallsInHalfOpenState: 3
+                waitDurationInOpenState: 10000
+                automaticTransitionFromOpenToHalfOpenEnabled: true
+                eventConsumerBufferSize: 10
+                failureRateThreshold: 50
+                slowCallRateThreshold: 100
+                slowCallDurationThreshold: 60000
+
+    retry:
+        instances:
+            event-service:
+                maxAttempts: 3
+                waitDuration: 1000
